@@ -10,21 +10,23 @@ var glob = require('glob')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var relative = require('relative')
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
-function getEntry (rootSrc) {
+function getEntry(rootSrc) {
   var map = {};
   glob.sync(rootSrc + '/pages/**/main.js')
-  .forEach(file => {
-    var key = relative(rootSrc, file).replace('.js', '');
-    map[key] = file;
-  })
-   return map;
+    .forEach(file => {
+      var key = relative(rootSrc, file).replace('.js', '');
+      map[key] = file;
+    })
+  return map;
 }
 
-const appEntry = { app: resolve('./src/main.js') }
+const appEntry = {
+  app: resolve('./src/main.js')
+}
 const pagesEntry = getEntry(resolve('./src'), 'pages/**/main.js')
 const entry = Object.assign({}, appEntry, pagesEntry)
 
@@ -38,9 +40,8 @@ let baseWebpackConfig = {
     path: config.build.assetsRoot,
     jsonpFunction: 'webpackJsonpMpvue',
     filename: '[name].js',
-    publicPath: process.env.NODE_ENV === 'production'
-      ? config.build.assetsPublicPath
-      : config.dev.assetsPublicPath
+    publicPath: process.env.NODE_ENV === 'production' ?
+      config.build.assetsPublicPath : config.dev.assetsPublicPath
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
@@ -53,8 +54,7 @@ let baseWebpackConfig = {
     mainFields: ['browser', 'module', 'main']
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         enforce: 'pre',
@@ -75,8 +75,19 @@ let baseWebpackConfig = {
           'babel-loader',
           {
             loader: 'mpvue-loader',
-            options: Object.assign({checkMPEntry: true}, vueLoaderConfig)
+            options: Object.assign({
+              checkMPEntry: true
+            }, vueLoaderConfig)
           },
+        ]
+      },
+      {
+        test: /\.css$/,
+        include: [resolve('src'), resolve('test')],
+        use: [
+          'style-loader',
+          'css-loader',
+          'px2rpx-loader?rpxUnit=1.5' // px转换为rpx的配置，rpxUnit=1.5为配置参数，后面会介绍
         ]
       },
       {
@@ -118,13 +129,11 @@ let baseWebpackConfig = {
     }], {
       context: 'src/'
     }),
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, '../static'),
-        to: path.resolve(config.build.assetsRoot, './static'),
-        ignore: ['.*']
-      }
-    ])
+    new CopyWebpackPlugin([{
+      from: path.resolve(__dirname, '../static'),
+      to: path.resolve(config.build.assetsRoot, './static'),
+      ignore: ['.*']
+    }])
   ]
 }
 
