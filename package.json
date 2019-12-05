@@ -1,5 +1,5 @@
 {
-  "name": "2duanxianwang",
+  "name": "duanxianwang",
   "version": "1.0.0",
   "mpvueTemplateProjectVersion": "0.1.0",
   "description": "A Mpvue project",
@@ -24,6 +24,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "echarts": "^4.5.0",
     "echarts-vue": "^1.1.5",
     "mpvue": "^2.0.0",
     "style-loader": "^1.0.1",

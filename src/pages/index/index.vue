@@ -23,6 +23,7 @@
     </form>
 
     <a href="/pages/counter/main" class="counter">去往Vuex示例页面</a>
+    <a href="/pages/chart/main">去图表测试页面</a>
 
     <div class="all">
         <div class="left">
