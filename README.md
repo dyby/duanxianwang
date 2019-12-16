@@ -1,48 +1,37 @@
-# my-echarts-demo
+# duanxianwang
 
-> mpvue实现动态加载echarts图表数据
+> A Mpvue project
 
 ## Build Setup
 
 ``` bash
-# install dependencies
-npm install
+# 初始化项目
+vue init mpvue/mpvue-quickstart myproject
+cd myproject
 
-# serve with hot reload at localhost:8080
-npm run dev
+# 安装依赖
+yarn
 
-# build for production with minification
-npm run build
+# 开发时构建
+npm dev
 
-# build for production and view the bundle analyzer report
+# 打包构建
+npm build
+
+# 指定平台的开发时构建(微信、百度、头条、支付宝)
+npm dev:wx
+npm dev:swan
+npm dev:tt
+npm dev:my
+
+# 指定平台的打包构建
+npm build:wx
+npm build:swan
+npm build:tt
+npm build:my
+
+# 生成 bundle 分析报告
 npm run build --report
 ```
 
-## 修改内容
-在mpvue官方修改`ec-canvas.js`的基础上，再次对`ec-canvas/ec-canvas.js`进行调整
-
-设置`setOption`函数
-
-```
-    setOptions () {
-      this.chart.clear()
-      this.chart.setOption(this.data.ec.options)
-    },
-```
-设置`ec`被更改时执行`setOptions`函数
-
-```
-  properties: {
-    canvasId: {
-      type: String,
-      value: 'ec-canvas'
-    },
-
-    ec: {
-      type: Object,
-      observer: function () {
-        this.setOptions()
-      }
-    }
-  },
-```
+For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
