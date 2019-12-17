@@ -31,14 +31,74 @@ export default {
 </script>
 
 <style>
+div{
+  box-sizing: border-box
+}
 .container {
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 200rpx 0;
+  padding: 5px;
   box-sizing: border-box;
+}
+.fl{ float: left;}
+.fr {float: right;}
+.clear{ overflow: hidden; display: block; width: 100%;}
+.clear::before,.clear::after{content:''; clear:both; display: block}
+.fixed{position: fixed; width: 100%; bottom: 0; padding: 10px;}
+
+.flex {
+  display: -webkit-flex;
+  display: flex
+}
+
+.flex.column{
+	flex-direction: column;
+}
+
+.flex.wrap {
+  flex-wrap: wrap
+}
+
+.flex.between {
+  justify-content: space-between
+}
+
+.flex.around {
+  justify-content: space-around
+}
+
+.flex.center {
+  justify-content: center
+}
+
+.flex.a-center {
+  align-items: center
+}
+
+.flex.a-start {
+  align-items: flex-start
+}
+.flex.row-reverse{
+	flex-direction: row-reverse;
+}
+
+.flex .flex-item {
+  flex-grow: 0
+}
+
+.flex .flex-item.flex-main {
+  flex-grow: 1
+}
+
+.flex .flex-item.noshrink {
+  flex-shrink: 0
+}
+
+.flex .flex-item.flex-half{
+	flex-basis: 50%;
 }
 /* this rule will be remove */
 * {

@@ -1,0 +1,12 @@
+{
+  "pages": [
+    "pages/index/main",
+    "pages/chart/main"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "测试",
+    "navigationBarTextStyle": "black"
+  }
+}

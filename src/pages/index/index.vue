@@ -1,20 +1,24 @@
 <template>
   <div class="container">
-    <div class="header">
-      <div class="coin-name">22</div>
-      <div class="coin-price">2.2</div>
-      <div class="avatar">{{userInfo.avatarUrl}}</div> 
+    <div class="header clear">
+      <div class="coin-name fl">22</div>
+      <div class="coin-price fl">2.2</div>
+      <div class="avatar fr">{{ motto }}</div> 
+    </div>
+    <div class="content">
+
+    </div>
+    <div class="footer fixed">
+      <div><input class="fl" type="digit" confirm-type="done" width="10" maxlength="3">%</div>
     </div>
   </div>
 </template>
 
 <script>
-import card from '@/components/card'
-
 export default {
   data () {
     return {
-      motto: 'Hello miniprograme',
+      motto: 'ss',
       userInfo: {
         nickName: 'mpvue',
         avatarUrl: 'http://mpvue.com/assets/logo.png'
@@ -23,7 +27,6 @@ export default {
   },
 
   components: {
-    card
   },
 
   methods: {
@@ -48,54 +51,5 @@ export default {
 </script>
 
 <style scoped>
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 150px;
-}
-
-.form-control {
-  display: block;
-  padding: 0 12px;
-  margin-bottom: 5px;
-  border: 1px solid #ccc;
-}
-.all{
-  width:7.5rem;
-  height:1rem;
-  background-color:blue;
-}
-.all:after{
-  display:block;
-  content:'';
-  clear:both;
-}
-.left{
-  float:left;
-  width:3rem;
-  height:1rem;
-  background-color:red;
-}
-
-.right{
-  float:left;
-  width:4.5rem;
-  height:1rem;
-  background-color:green;
-}
 </style>
