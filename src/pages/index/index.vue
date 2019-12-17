@@ -1,23 +1,10 @@
 <template>
-  <div class="container" @click="clickHandle('test click', $event)">
-
-    <div class="userinfo" @click="bindViewTap">
-      <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
-      <div class="userinfo-nickname">
-        <card :text="userInfo.nickName"></card>
-      </div>
+  <div class="container">
+    <div class="header">
+      <div class="coin-name">22</div>
+      <div class="coin-price">2.2</div>
+      <div class="avatar">{{userInfo.avatarUrl}}</div> 
     </div>
-
-    <div class="usermotto">
-      <div class="user-motto">
-        <card :text="motto"></card>
-      </div>
-    </div>
-
-    <form class="form-container">
-      <input type="text" class="form-control" v-model="motto" placeholder="v-model" />
-      <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
-    </form>
   </div>
 </template>
 
@@ -27,8 +14,11 @@ import card from '@/components/card'
 export default {
   data () {
     return {
-      motto: 'Hello World',
-      userInfo: {}
+      motto: 'Hello miniprograme',
+      userInfo: {
+        nickName: 'mpvue',
+        avatarUrl: 'http://mpvue.com/assets/logo.png'
+      }
     }
   },
 
@@ -39,28 +29,20 @@ export default {
   methods: {
     bindViewTap () {
       const url = '../logs/main'
-      wx.navigateTo({ url })
+      if (mpvuePlatform === 'wx') {
+        mpvue.switchTab({ url })
+      } else {
+        mpvue.navigateTo({ url })
+      }
     },
-    getUserInfo () {
-      // 调用登录接口
-      wx.login({
-        success: () => {
-          wx.getUserInfo({
-            success: (res) => {
-              this.userInfo = res.userInfo
-            }
-          })
-        }
-      })
-    },
-    clickHandle (msg, ev) {
-      console.log('clickHandle:', msg, ev)
+    clickHandle (ev) {
+      console.log('clickHandle:', ev)
+      // throw {message: 'custom test'}
     }
   },
 
   created () {
-    // 调用应用实例的方法获取全局数据
-    this.getUserInfo()
+    // let app = getApp()
   }
 }
 </script>
@@ -93,5 +75,27 @@ export default {
   margin-bottom: 5px;
   border: 1px solid #ccc;
 }
+.all{
+  width:7.5rem;
+  height:1rem;
+  background-color:blue;
+}
+.all:after{
+  display:block;
+  content:'';
+  clear:both;
+}
+.left{
+  float:left;
+  width:3rem;
+  height:1rem;
+  background-color:red;
+}
 
+.right{
+  float:left;
+  width:4.5rem;
+  height:1rem;
+  background-color:green;
+}
 </style>

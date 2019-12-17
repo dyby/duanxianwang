@@ -19,7 +19,7 @@ function initChart (canvas, width, height) {
   var option = {
     backgroundColor: '#fff',
     color: ['#37A2DA', '#67E0E3'],
-   
+
     legend: {
       data: ['A', 'B']
     },
