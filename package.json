@@ -1,8 +1,8 @@
 {
-  "name": "f2-wx-demo",
+  "name": "短线王",
   "version": "1.0.0",
   "description": "A Mpvue project",
-  "author": "zhangshuai <bruceworkzone@outlook.com>",
+  "author": "824040166@qq.com",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
