@@ -27,7 +27,7 @@
       <div class="flex">
         <div class="flex-item flex-main">
           <p class="notice">获利期望（不包含0.4%买卖手续费）</p>
-          <div><input class="fl" type="digit" confirm-type="done" width="10" maxlength="3">% - <input class="fl" type="digit" confirm-type="done" width="10" maxlength="3">%</div>
+          <div><input class="fl" type="digit" confirm-type="done" width="10" maxlength="3">%</div>
         </div>
         <div class="flex-item">
           <button>分析</button>
