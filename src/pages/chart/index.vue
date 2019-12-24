@@ -10,52 +10,102 @@
 import * as echarts from 'echarts/dist/echarts.simple.min'
 import mpvueEcharts from 'mpvue-echarts'
 
-function initChart (canvas, width, height) {
+function initChart(canvas, width, height) {
   const chart = echarts.init(canvas, null, {
     width: width,
     height: height
   })
   canvas.setChart(chart)
-  var option = {
-    backgroundColor: '#fff',
-    color: ['#37A2DA', '#67E0E3'],
 
-    legend: {
-      data: ['A', 'B']
+  function randomData() {
+    now = new Date(+now + oneDay)
+    value = value + Math.random() * 21 - 10
+    return {
+      name: now.toString(),
+      value: [
+        [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'),
+        Math.round(value)
+      ]
+    }
+  }
+
+  var data = []
+  var now = +new Date(1997, 9, 3)
+  var oneDay = 24 * 3600 * 1000
+  var value = Math.random() * 1000
+  for (var i = 0; i < 1000; i++) {
+    data.push(randomData())
+  }
+
+  var option = {
+    title: {
+      text: '动态数据 + 时间坐标轴'
     },
-    grid: {
-      containLabel: true
-    },
-    xAxis: {
-      type: 'category',
-      data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-    },
-    yAxis: {
-      x: 'center',
-      type: 'value',
-      splitLine: {
-        lineStyle: {
-          type: 'dashed'
-        }
+    tooltip: {
+      trigger: 'axis',
+      formatter: function(params) {
+        params = params[0]
+        var date = new Date(params.name)
+        return (
+          date.getDate() +
+          '/' +
+          (date.getMonth() + 1) +
+          '/' +
+          date.getFullYear() +
+          ' : ' +
+          params.value[1]
+        )
+      },
+      axisPointer: {
+        animation: false
       }
     },
-    series: [{
-      name: 'A',
-      type: 'line',
-      smooth: true,
-      data: [18, 36, 65, 30, 78, 40, 33]
-    }, {
-      name: 'B',
-      type: 'line',
-      smooth: true,
-      data: [12, 50, 51, 35, 70, 30, 20]
-    }]
+    xAxis: {
+      type: 'time',
+      splitLine: {
+        show: false
+      }
+    },
+    yAxis: {
+      type: 'value',
+      boundaryGap: [0, '100%'],
+      splitLine: {
+        show: false
+      }
+    },
+    series: [
+      {
+        name: '模拟数据',
+        type: 'line',
+        showSymbol: false,
+        hoverAnimation: false,
+        data: data,
+        areaStyle: {}
+      }
+
+    ]
   }
+
   chart.setOption(option)
+
+  setInterval(function() {
+    for (var i = 0; i < 5; i++) {
+      data.shift()
+      data.push(randomData())
+    }
+
+    chart.setOption({
+      series: [
+        {
+          data: data
+        }
+      ]
+    })
+  }, 1000)
   return chart
 }
 export default {
-  data () {
+  data() {
     return {
       echarts,
       onInit: initChart
@@ -64,7 +114,7 @@ export default {
   components: {
     mpvueEcharts
   },
-  onShareAppMessage () {}
+  onShareAppMessage() {}
 }
 </script>
 

@@ -40,18 +40,19 @@ div{
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 5px;
   box-sizing: border-box;
+  background: #f1f1f1;
 }
 .fl{ float: left;}
 .fr {float: right;}
 .clear{ overflow: hidden; display: block; width: 100%;}
 .clear::before,.clear::after{content:''; clear:both; display: block}
-.fixed{position: fixed; width: 100%; bottom: 0; padding: 10px;}
+.fixed-bottom{position: fixed; width: 100%; bottom: 0;}
 
 .flex {
   display: -webkit-flex;
-  display: flex
+  display: flex;
+  width: 750rpx;
 }
 
 .flex.column{
