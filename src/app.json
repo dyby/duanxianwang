@@ -1,6 +1,8 @@
 {
   "pages": [
+
     "pages/index/main",
+    "pages/report/main",
     "pages/chart/main"
   ],
   "window": {

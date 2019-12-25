@@ -41,7 +41,6 @@ div{
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  background: #f1f1f1;
 }
 .fl{ float: left;}
 .fr {float: right;}

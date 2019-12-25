@@ -49,7 +49,14 @@
   </div>
   <div class="cover">
     <div class="left-slider">
-      333
+      <div class="list">
+        <div v-for="item in coins" :key="item.name_en" :class="['list-item',{selected:item.selected}]">
+          <div class="flex">
+            <div class="flex-item flex-main"><span>{{item.name_en}}</span>{{item.name}}</div>
+            <div class="flex-item"><span class="icon switch"></span></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -59,11 +66,14 @@
 export default {
   data () {
     return {
-      motto: 'ss',
-      userInfo: {
-        nickName: 'mpvue',
-        avatarUrl: 'http://mpvue.com/assets/logo.png'
-      }
+      coins: [
+        { name_en: 'BTC', name: '比特币', selected: true },
+        { name_en: 'XRP', name: '瑞波币'},
+        { name_en: 'ETH', name: '以太坊'},
+        { name_en: 'LTC', name: '莱特币'},
+        { name_en: 'HT', name: '火币积分'},
+        { name_en: 'ATOM', name: '阿童木'}
+      ]
     }
   },
 
@@ -92,20 +102,21 @@ export default {
 </script>
 
 <style lang="less" scoped>
+ .switch{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('../../../static/images/switch.png') center center/ 100% auto no-repeat;
+  margin-right: 5px;
+}
 .header{
 
   height: 60px;
   line-height: 40px;
   padding: 5px;
-  .switch{
-    display: inline-block;
-    width: 30px;
-    height: 20px;
-    background: url('../../../static/images/switch.png') center center/ 100% auto no-repeat;
-    margin-right: 5px;
-  }
+
   .coin-name{
-    background: #fff; border-radius: 5px;
+    background: #f1f1f1; border-radius: 5px;
     font-size: 18px;
     padding: 0 12px;
     .coin-en{
@@ -195,8 +206,31 @@ export default {
 }
 .cover.show{ display: block;}
 .cover .left-slider{
-  width: 300rpx;
+  width: 500rpx;
   height: 100%;
   background: #fff;
+
+}
+.list{
+  .list-item{
+    padding: 20px 0;
+    .flex{
+      width: 100%;
+      padding: 0 5px;
+    }
+    .flex-main{
+      font-size: 14px;
+      span{
+        font-size: 18px;
+        padding-right: 10px;
+      }
+    }
+    &.selected{
+      background: #f1f1f1;
+    }
+    .switch{
+      float: right;
+    }
+  }
 }
 </style>
